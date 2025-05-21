@@ -120,18 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
         contentDiv.appendChild(groupDiv);
     }
     
-    // Create navigation arrows
-    const navDiv = document.createElement('div');
-    navDiv.className = 'risingstar-nav';
-    
-    const prevButton = document.createElement('button');
-    prevButton.innerHTML = '&lt;';
-    prevButton.addEventListener('click', scrollPrev);
-    
-    const nextButton = document.createElement('button');
-    nextButton.innerHTML = '&gt;';
-    nextButton.addEventListener('click', scrollNext);
-    
     // Create dots indicator
     const dotsDiv = document.createElement('div');
     dotsDiv.className = 'risingstar-dots';
@@ -146,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Assemble everything
     containerDiv.appendChild(contentDiv);
-    containerDiv.appendChild(navDiv);
     
     // Replace existing content
     const nameDiv = document.querySelector('.namerisingstar');
@@ -157,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Carousel functionality
     let currentGroup = 0;
-    const groups = document.querySelectorAll('.risingstar-group');
     const dots = document.querySelectorAll('.risingstar-dot');
     
     function updateCarousel() {
@@ -167,10 +153,150 @@ document.addEventListener('DOMContentLoaded', function() {
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentGroup);
         });
+    }
+    
+    function scrollNext() {
+        if (currentGroup < totalGroups - 1) {
+            currentGroup++;
+            updateCarousel();
+            resetAutoScroll();
+        }
+    }
+    
+    function scrollPrev() {
+        if (currentGroup > 0) {
+            currentGroup--;
+            updateCarousel();
+            resetAutoScroll();
+        }
+    }
+    
+    function goToGroup(index) {
+        currentGroup = index;
+        updateCarousel();
+        resetAutoScroll();
+    }
+    
+    // Auto-scroll functionality
+    let autoScrollInterval;
+    
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            if (currentGroup === totalGroups - 1) {
+                currentGroup = 0;
+            } else {
+                currentGroup++;
+            }
+            updateCarousel();
+        }, 2000);
+    }
+    
+    function resetAutoScroll() {
+        clearInterval(autoScrollInterval);
+        startAutoScroll();
+    }
+    
+    // Start auto-scroll
+    startAutoScroll();
+    
+    // Pause on hover
+    containerDiv.addEventListener('mouseenter', () => {
+        clearInterval(autoScrollInterval);
+    });
+    
+    containerDiv.addEventListener('mouseleave', () => {
+        startAutoScroll();
+    });
+    
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    containerDiv.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        clearInterval(autoScrollInterval);
+    }, { passive: true });
+    
+    containerDiv.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+        startAutoScroll();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold) {
+            scrollNext();
+        } else if (touchEndX - touchStartX > threshold) {
+            scrollPrev();
+        }
+    }
+});
+
+// Luxe Grand Reduction Deals Carousel - Scrolls groups of 6 items
+// Luxe Grand Reduction Deals Carousel - Scrolls groups of 6 items
+document.addEventListener('DOMContentLoaded', function() {
+    const luxeContainer = document.querySelector('.luxegrandreductiondeals');
+    const items = document.querySelectorAll('.luxecontent');
+    const totalItems = items.length;
+    const itemsPerGroup = 6;
+    const totalGroups = Math.ceil(totalItems / itemsPerGroup);
+    
+    // Create container and content divs
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'luxe-container';
+    
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'luxe-content-wrapper';
+    
+    // Group items into sets of 6
+    for (let i = 0; i < totalGroups; i++) {
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'luxe-group';
         
-        // Disable buttons at boundaries
-        prevButton.disabled = currentGroup === 0;
-        nextButton.disabled = currentGroup === totalGroups - 1;
+        const startIndex = i * itemsPerGroup;
+        const endIndex = Math.min(startIndex + itemsPerGroup, totalItems);
+        
+        for (let j = startIndex; j < endIndex; j++) {
+            groupDiv.appendChild(items[j].cloneNode(true));
+        }
+        
+        contentWrapper.appendChild(groupDiv);
+    }
+    
+    // Create dots indicator
+    const dotsDiv = document.createElement('div');
+    dotsDiv.className = 'luxe-dots';
+    
+    for (let i = 0; i < totalGroups; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'luxe-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToGroup(i));
+        dotsDiv.appendChild(dot);
+    }
+    
+    // Assemble everything
+    containerDiv.appendChild(contentWrapper);
+    
+    // Replace existing content
+    const nameDiv = document.querySelector('.nameluxegrandreductiondeals');
+    luxeContainer.innerHTML = '';
+    luxeContainer.appendChild(nameDiv);
+    luxeContainer.appendChild(containerDiv);
+    luxeContainer.appendChild(dotsDiv);
+    
+    // Carousel functionality
+    let currentGroup = 0;
+    const dots = document.querySelectorAll('.luxe-dot');
+    
+    function updateCarousel() {
+        contentWrapper.style.transform = `translateX(-${currentGroup * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentGroup);
+        });
     }
     
     function scrollNext() {

@@ -172,35 +172,6 @@ body {
   transition: transform 0.3s;
 }
 
-.risingstar-nav {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.risingstar-nav button {
-  pointer-events: auto;
-  background: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  z-index: 10;
-}
-
-.risingstar-nav button:hover {
-  background: #f5f5f5;
-}
 
 .risingstar-dots {
   display: flex;
@@ -223,10 +194,66 @@ body {
 }
 
 
+.luxegrandreductiondeals {
+  margin: 40px 0;
+  position: relative;
+}
 
+.nameluxegrandreductiondeals {
+  font-size: 37px;
+  color: #504949;
+  font-weight: bold;
+  padding: 50px 0px 100px 40px;
+}
 
+.luxe-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
 
+.luxe-content-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
+.luxe-group {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.luxecontent {
+  flex: 0 0 16.666%; /* 6 items per view (100%/6) */
+  box-sizing: border-box;
+}
+
+.luxebanner img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.luxe-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.luxe-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.luxe-dot.active {
+  background: #333;
+}
 
 .footer {
   padding: 10px 14vw;
