@@ -231,11 +231,12 @@ body {
 .footer {
   padding: 10px 14vw;
   color: gray;
-  font-size: 18px;
+  font-size: 16px;
 }
 .footer a {
   text-decoration: none;
   color: gray;
+  line-height: 1.75;
 }
 
 .coloumitems{
@@ -301,4 +302,7 @@ body {
 }
 .studiolist ol{
   padding-left: 60px;
+}
+.popularitems a{
+  font-size: 18px;
 }
