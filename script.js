@@ -376,3 +376,287 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const medalSection = document.querySelector('.medalworthybrandstobag');
+    const medalItems = document.querySelectorAll('.medalcontent');
+    const totalItems = medalItems.length;
+    const itemsPerGroup = 6;
+    const totalGroups = Math.ceil(totalItems / itemsPerGroup);
+    
+    // Create container and content divs
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'medal-container';
+    
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'medal-content-wrapper';
+    
+    // Group items into sets of 6
+    for (let i = 0; i < totalGroups; i++) {
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'medal-group';
+        
+        const startIndex = i * itemsPerGroup;
+        const endIndex = Math.min(startIndex + itemsPerGroup, totalItems);
+        
+        for (let j = startIndex; j < endIndex; j++) {
+            groupDiv.appendChild(medalItems[j].cloneNode(true));
+        }
+        
+        contentWrapper.appendChild(groupDiv);
+    }
+    
+    // Create dots indicator
+    const dotsDiv = document.createElement('div');
+    dotsDiv.className = 'medal-dots';
+    
+    for (let i = 0; i < totalGroups; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'medal-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToGroup(i));
+        dotsDiv.appendChild(dot);
+    }
+    
+    // Assemble everything
+    containerDiv.appendChild(contentWrapper);
+    
+    // Replace existing content
+    const nameDiv = document.querySelector('.namemedalworthybrandstobag');
+    medalSection.innerHTML = '';
+    medalSection.appendChild(nameDiv);
+    medalSection.appendChild(containerDiv);
+    medalSection.appendChild(dotsDiv);
+    
+    // Carousel functionality
+    let currentGroup = 0;
+    const dots = document.querySelectorAll('.medal-dot');
+    
+    function updateCarousel() {
+        contentWrapper.style.transform = `translateX(-${currentGroup * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentGroup);
+        });
+    }
+    
+    function scrollNext() {
+        if (currentGroup < totalGroups - 1) {
+            currentGroup++;
+            updateCarousel();
+            resetAutoScroll();
+        }
+    }
+    
+    function scrollPrev() {
+        if (currentGroup > 0) {
+            currentGroup--;
+            updateCarousel();
+            resetAutoScroll();
+        }
+    }
+    
+    function goToGroup(index) {
+        currentGroup = index;
+        updateCarousel();
+        resetAutoScroll();
+    }
+    
+    // Auto-scroll functionality
+    let autoScrollInterval;
+    
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            if (currentGroup === totalGroups - 1) {
+                currentGroup = 0;
+            } else {
+                currentGroup++;
+            }
+            updateCarousel();
+        }, 2000);
+    }
+    
+    function resetAutoScroll() {
+        clearInterval(autoScrollInterval);
+        startAutoScroll();
+    }
+    
+    // Start auto-scroll
+    startAutoScroll();
+    
+    // Pause on hover
+    containerDiv.addEventListener('mouseenter', () => {
+        clearInterval(autoScrollInterval);
+    });
+    
+    containerDiv.addEventListener('mouseleave', () => {
+        startAutoScroll();
+    });
+    
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    containerDiv.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        clearInterval(autoScrollInterval);
+    }, { passive: true });
+    
+    containerDiv.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+        startAutoScroll();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold) {
+            scrollNext();
+        } else if (touchEndX - touchStartX > threshold) {
+            scrollPrev();
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const grandSection = document.querySelector('.grandglobalbrands');
+    const grandItems = document.querySelectorAll('.grandcontent');
+    const totalItems = grandItems.length;
+    const itemsPerGroup = 6;
+    const totalGroups = Math.ceil(totalItems / itemsPerGroup);
+    
+    // Create container and content divs
+    const containerDiv = document.createElement('div');
+    containerDiv.className = 'grand-container';
+    
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'grand-content-wrapper';
+    
+    // Group items into sets of 6
+    for (let i = 0; i < totalGroups; i++) {
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'grand-group';
+        
+        const startIndex = i * itemsPerGroup;
+        const endIndex = Math.min(startIndex + itemsPerGroup, totalItems);
+        
+        for (let j = startIndex; j < endIndex; j++) {
+            groupDiv.appendChild(grandItems[j].cloneNode(true));
+        }
+        
+        contentWrapper.appendChild(groupDiv);
+    }
+    
+    // Create dots indicator
+    const dotsDiv = document.createElement('div');
+    dotsDiv.className = 'grand-dots';
+    
+    for (let i = 0; i < totalGroups; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'grand-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToGroup(i));
+        dotsDiv.appendChild(dot);
+    }
+    
+    // Assemble everything
+    containerDiv.appendChild(contentWrapper);
+    
+    // Replace existing content
+    const nameDiv = document.querySelector('.namegrandglobalbrands');
+    grandSection.innerHTML = '';
+    grandSection.appendChild(nameDiv);
+    grandSection.appendChild(containerDiv);
+    grandSection.appendChild(dotsDiv);
+    
+    // Carousel functionality
+    let currentGroup = 0;
+    const dots = document.querySelectorAll('.grand-dot');
+    
+    function updateCarousel() {
+        contentWrapper.style.transform = `translateX(-${currentGroup * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentGroup);
+        });
+    }
+    
+    function scrollNext() {
+        if (currentGroup < totalGroups - 1) {
+            currentGroup++;
+            updateCarousel();
+            resetAutoScroll();
+        }
+    }
+    
+    function scrollPrev() {
+        if (currentGroup > 0) {
+            currentGroup--;
+            updateCarousel();
+            resetAutoScroll();
+        }
+    }
+    
+    function goToGroup(index) {
+        currentGroup = index;
+        updateCarousel();
+        resetAutoScroll();
+    }
+    
+    // Auto-scroll functionality
+    let autoScrollInterval;
+    
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            if (currentGroup === totalGroups - 1) {
+                currentGroup = 0;
+            } else {
+                currentGroup++;
+            }
+            updateCarousel();
+        }, 2000);
+    }
+    
+    function resetAutoScroll() {
+        clearInterval(autoScrollInterval);
+        startAutoScroll();
+    }
+    
+    // Start auto-scroll
+    startAutoScroll();
+    
+    // Pause on hover
+    containerDiv.addEventListener('mouseenter', () => {
+        clearInterval(autoScrollInterval);
+    });
+    
+    containerDiv.addEventListener('mouseleave', () => {
+        startAutoScroll();
+    });
+    
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    containerDiv.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        clearInterval(autoScrollInterval);
+    }, { passive: true });
+    
+    containerDiv.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+        startAutoScroll();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold) {
+            scrollNext();
+        } else if (touchEndX - touchStartX > threshold) {
+            scrollPrev();
+        }
+    }
+});

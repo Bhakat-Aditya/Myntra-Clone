@@ -8,8 +8,10 @@
 }
 
 body {
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-  overflow-y: auto; /* Show vertical scrollbar when needed */
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+  overflow-y: auto;
+  /* Show vertical scrollbar when needed */
 }
 
 .navbar {
@@ -161,7 +163,8 @@ body {
 }
 
 .risingstarcontent {
-  flex: 0 0 20%; /* 5 items per view (100%/5) */
+  flex: 0 0 20%;
+  /* 5 items per view (100%/5) */
   box-sizing: border-box;
 }
 
@@ -224,7 +227,8 @@ body {
 }
 
 .luxecontent {
-  flex: 0 0 16.666%; /* 6 items per view (100%/6) */
+  flex: 0 0 16.666%;
+  /* 6 items per view (100%/6) */
   box-sizing: border-box;
 }
 
@@ -255,81 +259,220 @@ body {
   background: #333;
 }
 
+
+.medalworthybrandstobag {
+  margin: 40px 0;
+  position: relative;
+}
+
+.namemedalworthybrandstobag {
+  font-size: 37px;
+  color: #504949;
+  font-weight: bold;
+  padding: 50px 0px 100px 40px;
+}
+
+.medal-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.medal-content-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.medal-group {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.medalcontent {
+  flex: 0 0 16.666%;
+  /* 6 items per view (100%/6) */
+  box-sizing: border-box;
+}
+
+.medalbanner img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.medal-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.medal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.medal-dot.active {
+  background: #333;
+}
+
+.grandglobalbrands {
+  margin: 40px 0;
+  position: relative;
+}
+
+.namegrandglobalbrands {
+  font-size: 37px;
+  color: #504949;
+  font-weight: bold;
+  padding: 50px 0px 100px 40px;
+}
+
+.grand-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.grand-content-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.grand-group {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.grandcontent {
+  flex: 0 0 16.666%;
+  /* 6 items per view (100%/6) */
+  box-sizing: border-box;
+}
+
+.grandbanner img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.grand-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.grand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.grand-dot.active {
+  background: #333;
+}
+
+
+
+
+
+
+
 .footer {
   padding: 10px 14vw;
   color: gray;
   font-size: 16px;
 }
+
 .footer a {
   text-decoration: none;
   color: gray;
   line-height: 1.75;
 }
 
-.coloumitems{
+.coloumitems {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.android img{
+.android img {
   width: 150px;
 }
-.apple img{
+
+.apple img {
   width: 131px;
 }
 
-.download{
+.download {
   display: flex;
   gap: 10px;
 }
 
-.column4 img{
+.column4 img {
   width: 50px;
 }
 
-.original{
-  display: flex;
-  max-width: 300px;
-  gap: 15px;
-}
-.return{
+.original {
   display: flex;
   max-width: 300px;
   gap: 15px;
 }
 
-* ul{
+.return {
+  display: flex;
+  max-width: 300px;
+  gap: 15px;
+}
+
+* ul {
   list-style: none;
 }
 
-.concerns{
+.concerns {
   display: flex;
   justify-content: space-between;
   padding: 50px 0;
 }
 
-.bestonlinesite ol{
+.bestonlinesite ol {
   padding-left: 45px;
 }
-.insider ul{
+
+.insider ul {
   list-style-type: disc;
   padding-left: 60px;
   line-height: 2;
 }
-.elite ul{
+
+.elite ul {
   list-style-type: disc;
   padding-left: 60px;
   line-height: 2;
 }
-.icon ul{
+
+.icon ul {
   list-style-type: disc;
   padding-left: 60px;
   line-height: 2;
 }
-.studiolist ol{
+
+.studiolist ol {
   padding-left: 60px;
 }
-.popularitems a{
+
+.popularitems a {
   font-size: 18px;
 }
